@@ -1,1 +1,1 @@
-throw new Error('Implementation not found.');
+export * from './component/StandaloneContainer';
