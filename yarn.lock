@@ -3967,6 +3967,11 @@ isobject@^3.0.0, isobject@^3.0.1:
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
   integrity sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
 
+jamyth-web-util@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/jamyth-web-util/-/jamyth-web-util-1.0.4.tgz#82af9777cedc2f9f4e7d8808d75ad9407265222b"
+  integrity sha512-iHlZrm4F/Ml/h6J1miv3OyvkY+SrYiS9MBDp36sjdr/iQ9Ly/tiBx8PzrcdvMWvMW9Tz2FylHtTKAOaWN//E0w==
+
 jest-worker@^26.2.1, jest-worker@^26.3.0, jest-worker@^26.6.2:
   version "26.6.2"
   resolved "https://registry.yarnpkg.com/jest-worker/-/jest-worker-26.6.2.tgz#7f72cbc4d643c365e27b9fd775f9d0eaa9c7a8ed"
