@@ -42,13 +42,15 @@ export function useDirectionDrag(
         [minHeight],
     );
 
-    /* eslint-disable @typescript-eslint/no-non-null-assertion -- request animation frame */
     const handleDirectionalResize = React.useCallback(
         (
             e: MouseEvent,
             direction: DirectionEnum.TOP | DirectionEnum.LEFT | DirectionEnum.RIGHT | DirectionEnum.BOTTOM,
         ) => {
-            const position = container!.getBoundingClientRect();
+            if (!container) {
+                return () => {};
+            }
+            const position = container.getBoundingClientRect();
             switch (direction) {
                 case DirectionEnum.RIGHT:
                     return () => {
@@ -57,7 +59,7 @@ export function useDirectionDrag(
                         if (shouldPreventHorizontalResize(width)) {
                             return;
                         }
-                        container!.style.right = right + 'px';
+                        container.style.right = right + 'px';
                     };
                 case DirectionEnum.LEFT:
                     return () => {
@@ -65,7 +67,7 @@ export function useDirectionDrag(
                         if (shouldPreventHorizontalResize(width)) {
                             return;
                         }
-                        container!.style.left = e.clientX + 'px';
+                        container.style.left = e.clientX + 'px';
                     };
                 case DirectionEnum.TOP:
                     return () => {
@@ -74,7 +76,7 @@ export function useDirectionDrag(
                         if (shouldPreventVerticalResize(height)) {
                             return;
                         }
-                        container!.style.top = e.clientY + 'px';
+                        container.style.top = e.clientY + 'px';
                     };
                 case DirectionEnum.BOTTOM:
                     return () => {
@@ -83,7 +85,7 @@ export function useDirectionDrag(
                         if (shouldPreventVerticalResize(height)) {
                             return;
                         }
-                        container!.style.bottom = window.innerHeight - e.clientY + 'px';
+                        container.style.bottom = window.innerHeight - e.clientY + 'px';
                     };
             }
         },
@@ -125,7 +127,6 @@ export function useDirectionDrag(
         },
         [handleDirectionalResize],
     );
-    /* eslint-enable @typescript-eslint/no-non-null-assertion */
 
     const onMouseMove = React.useCallback(
         (e: MouseEvent) => {
@@ -133,7 +134,6 @@ export function useDirectionDrag(
                 return;
             }
             let callback: () => void;
-            /* eslint-disable @typescript-eslint/no-non-null-assertion -- request animation frame */
             switch (direction) {
                 case DirectionEnum.TOP:
                 case DirectionEnum.LEFT:
@@ -148,7 +148,6 @@ export function useDirectionDrag(
                     callback = handleDiagonalResize(e, direction);
                     break;
             }
-            /* eslint-enable @typescript-eslint/no-non-null-assertion */
             requestAnimationFrame(callback);
         },
         [container, direction, handleDiagonalResize, handleDirectionalResize, isMouseDown],
